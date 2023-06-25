@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./Develop/style.css" />
+    <title>Document</title>
+</head>
+<body>
+
+        <header class="p-5 text-center text-white bg-primary">
+            <h1>Weather Dashboard</h1>
+        </header>
+
+    <main class="colTwo">
+        <aside>
+            <form id="user-form">
+                <label id="city">Search for a City:</label><br>
+                <input type="text" id="userCity" placeholder="Clarksburg"><br>
+                <button type="button" id="submitBtn">Submit</button> 
+            </form>
+        </aside>
+
+        <div class="cities">
+            <h2>Recently searched cities:</h2><br>
+            <div>
+                <ul class="recentlySearched"></ul>
+            </div>
+        </div>
+    
+        <div class="current">
+            <div class="today">
+                <div class="card" style="max-width: 400px;">
+                    <h2 class="card-name cityName"></h2>
+                    <h3 class="card-date cityDate"></h3>
+                    <img class="icon"/>
+                    <div class="card-info cityinfo"></div>
+                </div>
+            </div>
+            <div class="row fiveForecast"></div>
+        </div>
+    </main>
+
+    <script src="./Develop/script.js"></script>
+</body>
+</html>
