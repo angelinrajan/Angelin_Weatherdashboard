@@ -13,6 +13,7 @@
         </header>
 
     <main class="colTwo">
+        <div id="mainBox">
         <aside>
             <form id="user-form">
                 <label id="city">Search for a City:</label><br>
@@ -20,14 +21,6 @@
                 <button type="button" id="submitBtn">Submit</button> 
             </form>
         </aside>
-
-        <div class="cities">
-            <h2>Recently searched cities:</h2><br>
-            <div>
-                <ul class="recentlySearched"></ul>
-            </div>
-        </div>
-    
         <div class="current">
             <div class="today">
                 <div class="card" style="max-width: 400px;">
@@ -39,8 +32,21 @@
             </div>
             <div class="row fiveForecast"></div>
         </div>
-    </main>
+        </div>
+        <div class="cities">
+            <h2>Recently searched cities:</h2><br>
+            <div class="recentlySearched"></div>
+        </div>
+    
+        
 
+    </main>
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+  ></script>
     <script src="./Develop/script.js"></script>
+
 </body>
 </html>

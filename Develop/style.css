@@ -34,3 +34,14 @@ header {
   h2 {
     border-width: 3px;
   }
+.cities {
+    width: 300px;
+}
+.btnCity {
+    margin: 5px;
+}
+
+#mainBox {
+display: flex;
+width: 100%;
+}
