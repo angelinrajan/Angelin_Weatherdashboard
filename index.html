@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./Develop/style.css" />
     <title>Document</title>
 </head>
+
 <body>
 
-        <header class="p-5 text-center text-white bg-primary">
-            <h1>Weather Dashboard</h1>
-        </header>
+    <header class="p-5 text-center text-white bg-primary">
+        <h1>Weather Dashboard</h1>
+    </header>
 
     <main class="colTwo">
         <div id="mainBox">
-        <aside>
-            <form id="user-form">
-                <label id="city">Search for a City:</label><br>
-                <input type="text" id="userCity" placeholder="Clarksburg"><br>
-                <button type="button" id="submitBtn">Submit</button> 
-            </form>
-        </aside>
-        <div class="current">
-            <div class="today">
-                <div class="card" style="max-width: 400px;">
-                    <h2 class="card-name cityName"></h2>
-                    <h3 class="card-date cityDate"></h3>
-                    <img class="icon"/>
-                    <div class="card-info cityinfo"></div>
+            <aside>
+                <form id="user-form">
+                    <label id="city">Search for a City:</label><br>
+                    <input type="text" id="userCity" placeholder="Clarksburg"><br>
+                    <button type="button" id="submitBtn">Submit</button>
+                </form>
+            </aside>
+            <div class="current">
+
+                <div class="card">
+                    <h2 class="card-name cityNameDate"></h2>
+                    <img class="icon" />
+                    <p class="card-info cityTemp" style="width: 100%;"></p>
+                    <p class="card-info cityWind" style="width: 100%;"></p>
+                    <p class="card-info cityHumidity" style="width: 100%;"></p>
                 </div>
+
             </div>
-            <div class="row fiveForecast"></div>
-        </div>
         </div>
         <div class="cities">
-            <h2>Recently searched cities:</h2><br>
-            <div class="recentlySearched"></div>
+            <aside>
+                <h2>Recently searched cities:</h2><br>
+                <div class="recentlySearched"></div>
+            </aside>
+            <div class="five">
+                <h3>5-Day Forecast: </h3>
+                <div class =fiveDayblock></div>
+            </div>
         </div>
-    
-        
+
+
 
     </main>
-    <script
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
-  ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
     <script src="./Develop/script.js"></script>
 
 </body>
+
 </html>
