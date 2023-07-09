@@ -6,8 +6,11 @@ var listsearch = document.querySelector('.recentlySearched');
 var cname = document.querySelector('.cityNameDate');
 var ctemp = document.querySelector('.cityTemp');
 var cwind = document.querySelector('.cityWind');
+var imgIcon = document.querySelector('.icon');
+var todayBlock = document.querySelector('.card');
 var chumidity = document.querySelector('.cityHumidity');
 var fiveDayInfo = document.querySelector('.fiveDayblock');
+var fiveBlock = document.querySelector('.five');
 var cityforStoring = '';
 var cityCoord;
 /*
@@ -30,9 +33,9 @@ var submitcity = function (event) {
 
     if (usercity) {
         getUserCity(usercity);
-
-        currentWeather.textContent = '';
-        inputCity.value = '';
+        clearBox(fiveDayInfo)
+        //currentWeather.textContent = '';
+        //inputCity.value = '';
         console.log(usercity);
 
         var storage = JSON.parse(localStorage.getItem("cities")) || [];
@@ -44,6 +47,7 @@ var submitcity = function (event) {
     }
 };
 
+
 var getUserCity = function (city) {
     var apiUrl = requestUrl + 'q=' + city + '&appid=5047f7b10a087045ce4a8642196cccd4&units=imperial';
     fetch(apiUrl)
@@ -52,58 +56,84 @@ var getUserCity = function (city) {
                 console.log(response);
                 return response.json()
 
-                    .then(function (data) {
-                        console.log(data);
-                        var today = data.list[0];
-                        var todayDate = dayjs.unix(today.dt).format("M/D/YYYY");
-                        var cityn = data.city.name;
-                        cname.textContent = cityn + ":  " + todayDate;
-                        console.log(cname)
-                        var tempc = data.list[0].main.temp;
-                        ctemp.textContent = "Temp : " + tempc;
-                        console.log(ctemp)
-                        var windc = data.list[0].wind.speed;
-                        cwind.textContent = "Wind : " + windc;
-                        console.log(cwind)
-                        var humidityc = data.list[0].main.humidity;
-                        chumidity.textContent = "Humidity : " + humidityc;
-                        console.log(chumidity)
-                        //cdate.textContent = todayDate;
-                        console.log(todayDate);
-                        console.log(today);
-                        for (var i = 7; i < data.list.length; i += 8) {
-                            var day = data.list[i]
-                            var fiveDate = dayjs.unix(day.dt).format("M/D/YYYY");
-                            console.log(fiveDate);
-                            console.log(day);
+                    .then(function (olddata) {
+                        console.log(olddata);
+                    //console.log(data.city.coord.lat)
+                    var latitide = olddata.city.coord.lat;
+                    var longitude = olddata.city.coord.lon;
+                    
 
-                            var daySelection = document.createElement("div");
-                            daySelection.setAttribute("class", "daysInfo");
-                            var dateSection = document.createElement("h3");
-                            // var iconSection = document.createElement("img")
-                            var temperatureSection = document.createElement("p")
-                            var windSection = document.createElement("p")
-                            var humiditySection = document.createElement("p")
+                   var newUrl = requestUrl + "lat=" + latitide + "&lon=" + longitude + "&appid=5047f7b10a087045ce4a8642196cccd4&units=imperial"
+                    fetch(newUrl)
+                    .then(function (response) {
+                        if (response.status === 200) {
+                            console.log(response);
+                            return response.json()
 
-                            dateSection.textContent = fiveDate;
-                            temperatureSection.textContent = "Temp : " + day.main.temp;
-                            windSection.textContent = "Wind : " + day.wind.speed;
-                            humiditySection.textContent = "Humidity : " + day.main.humidity;
-
-                            daySelection.appendChild(dateSection);
-                            daySelection.appendChild(temperatureSection);
-                            daySelection.appendChild(windSection);
-                            daySelection.appendChild(humiditySection);
-                            console.log(daySelection.innerText)
-                            fiveDayInfo.appendChild(daySelection);
-                        };
-                        console.log(fiveDate)
-                    });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        });
-};
+                            .then(function (data) {
+                                console.log(data);
+                                todayBlock.style.visibility = 'visible'
+                                fiveBlock.style.visibility = 'visible'
+                                var today = data.list[0];
+                                var todayDate = dayjs.unix(today.dt).format("M/D/YYYY");
+                                var cityn = data.city.name;
+                                cname.textContent = cityn + ":  " + todayDate;
+                                console.log(cname)
+                                var tempc = data.list[0].main.temp;
+                                ctemp.textContent = "Temp : " + tempc + " °F";
+                                console.log(ctemp)
+                                var windc = data.list[0].wind.speed;
+                                cwind.textContent = "Wind : " + windc + " MPH";
+                                console.log(cwind)
+                                var humidityc = data.list[0].main.humidity;
+                                chumidity.textContent = "Humidity : " + humidityc + " %";
+                                console.log(chumidity)
+                                var todayIcon = data.list[0].weather[0].icon
+                                imgIcon.src = "https://openweathermap.org/img/wn/" + todayIcon + ".png";
+                                console.log(imgIcon)
+                                //cdate.textContent = todayDate;
+                                console.log(todayDate);
+                                console.log(today);
+                                for (var i = 7; i < data.list.length; i += 8) {
+                                    var day = data.list[i]
+                                    var fiveDate = dayjs.unix(day.dt).format("M/D/YYYY");
+                                    console.log(fiveDate);
+                                    console.log(day);
+        
+                                    var daySelection = document.createElement("div");
+                                    daySelection.setAttribute("class", "daysInfo");
+                                    var dateSection = document.createElement("h3");
+                                    var iconSection = document.createElement("img")
+                                    var temperatureSection = document.createElement("p")
+                                    var windSection = document.createElement("p")
+                                    var humiditySection = document.createElement("p")
+        
+                                    dateSection.textContent = fiveDate;
+                                    iconSection.src = "https://openweathermap.org/img/wn/" + day.weather[0].icon + ".png";
+                                    temperatureSection.textContent = "Temp : " + day.main.temp + " °F";
+                                    windSection.textContent = "Wind : " + day.wind.speed + " MPH";
+                                    humiditySection.textContent = "Humidity : " + day.main.humidity + " %";
+        
+                                    daySelection.appendChild(dateSection);
+                                    daySelection.appendChild(iconSection);
+                                    daySelection.appendChild(temperatureSection);
+                                    daySelection.appendChild(windSection);
+                                    daySelection.appendChild(humiditySection);
+                                    console.log(daySelection.innerText)
+                                    fiveDayInfo.appendChild(daySelection);
+                                };
+                                console.log(fiveDate)
+                            });
+                        } else {
+                            alert('Error: ' + response.statusText);
+                        }
+                            });
+                            })
+                        } else {
+                            alert('Could not find city name, please enter another city')
+                        }
+                    })
+                };
 
 function getRecentSearch() {
 
@@ -121,6 +151,7 @@ function getRecentSearch() {
             eachSearch.innerText = citystore[i];
             eachSearch.setAttribute("class", "btnCity");
             eachSearch.addEventListener("click", function (event) {
+                clearBox(fiveDayInfo)
                 var city = event.target.innerText;
                 getUserCity(city);
             })
@@ -128,5 +159,8 @@ function getRecentSearch() {
         };
     }
 };
+function clearBox(fiveDayInfo) {
+    fiveDayInfo.innerText="";
+}
 getRecentSearch();
 Submit.addEventListener('click', submitcity);
