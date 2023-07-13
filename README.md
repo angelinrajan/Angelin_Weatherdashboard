@@ -6,7 +6,7 @@ The Weather Dashboard is a user-friendly application that enables users to effor
 To enhance user convenience, the Weather Dashboard features a "Recently Searched Cities" section. Whenever a city is searched, it is automatically added to this section, allowing users to quickly access the weather information for that city with just a click. This feature ensures that users can easily retrieve weather updates for their preferred cities whenever they need them.
 
 
-## Website's Live URL -
+## Website's Live URL - https://angelinrajan.github.io/Angelin_Weatherdashboard/
 
 
 ## Functionality of the website
@@ -32,7 +32,7 @@ Overall, the website provides users with a convenient way to search for and retr
 6. Tracked the progress and obtained the live website's URL within the Actions tab.
 7. Clicking on the provided live website link directs users to the deployed website without any errors. (See screenshot below)
 
-
+![Angelin's Weather Dashboard application screenshot](Assets/angelinrajan.github.io_Angelin_Weatherdashboard_.png)
 
 ## API used
 1. https://api.openweathermap.org
