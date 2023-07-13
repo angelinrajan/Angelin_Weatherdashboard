@@ -47,3 +47,4 @@ Overall, the website provides users with a convenient way to search for and retr
 6. Background fading: https://www.w3schools.com/css/css3_gradients.asp
 7. Set Attribute: https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
 8. Setting icons: https://openweathermap.org/weather-conditions
+9. Fix Duplicate cities issue: https://www.reddit.com/r/learnjavascript/comments/zwi8s3/im_trying_to_prevent_adding_a_duplicate_value_to/
